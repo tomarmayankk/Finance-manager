@@ -1,34 +1,43 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const features = [
   {
     title: "SIP Calculator",
-    desc: "Plan your long-term investments with accurate monthly growth projections.",
+    desc: "Plan systematic investments and visualize long-term wealth growth.",
+    link: "/calculators/sip",
   },
   {
     title: "EMI Calculator",
-    desc: "Calculate your monthly loan payments instantly and plan smartly.",
+    desc: "Calculate loan EMIs and total interest instantly.",
+    link: "/calculators/emi",
   },
   {
     title: "FD Calculator",
-    desc: "Know your fixed deposit maturity value with precise calculations.",
+    desc: "Estimate fixed deposit maturity amount with ease.",
+    link: "/calculators/fd",
+  },
+  {
+    title: "RD Calculator",
+    desc: "Plan recurring deposits and track expected returns.",
+    link: "/calculators/rd",
+  },
+  {
+    title: "Lump Sum Calculator",
+    desc: "Calculate returns on one-time investments accurately.",
+    link: "/calculators/lumpsum",
   },
   {
     title: "Expense Tracker",
-    desc: "Track daily expenses and categorize your spending habits easily.",
-  },
-  {
-    title: "Budget Manager",
-    desc: "Set monthly budgets and monitor your financial discipline.",
-  },
-  {
-    title: "AI Insights (Coming Soon)",
-    desc: "Get smart financial recommendations based on your usage patterns.",
+    desc: "Track daily expenses and manage budgets securely.",
+    link: "/register",
   },
 ];
 
 const Landing = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-gray-50 text-gray-900">
       <Navbar />
@@ -45,30 +54,35 @@ const Landing = () => {
             </h1>
 
             <p className="mt-6 text-lg text-gray-600">
-              Track expenses, calculate SIP, EMI & FD, and manage your 
-              budget — all in one secure platform.
+              Use powerful calculators like SIP, EMI, FD, RD & Lump Sum,
+              track expenses, and manage your finances — all in one place.
             </p>
 
             <div className="mt-8 flex gap-4">
-              <button className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition">
+              <button
+                onClick={() => navigate("/register")}
+                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+              >
                 Get Started
               </button>
 
-              <button className="border border-gray-300 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">
+              <button
+                onClick={() => navigate("/calculators/sip")}
+                className="border border-gray-300 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition"
+              >
                 Try Calculators
               </button>
             </div>
           </div>
 
-          {/* Right Image */}
+          {/* Right Preview Box */}
           <div className="md:w-1/2 mt-12 md:mt-0">
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <div className="h-64 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400">
-                Dashboard Preview
+                Finance Dashboard Preview
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -76,14 +90,15 @@ const Landing = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center">
-            Everything You Need to Manage Money
+            Powerful Financial Tools
           </h2>
 
           <div className="mt-12 grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md transition"
+                onClick={() => navigate(feature.link)}
+                className="cursor-pointer bg-gray-50 p-6 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition"
               >
                 <h3 className="text-xl font-semibold">
                   {feature.title}
@@ -108,21 +123,21 @@ const Landing = () => {
             <div>
               <h4 className="font-semibold text-lg">Secure Authentication</h4>
               <p className="mt-2 text-gray-600 text-sm">
-                JWT-based login system ensures your financial data stays protected.
+                JWT-based login ensures your financial data stays protected.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-lg">Real-Time Tracking</h4>
+              <h4 className="font-semibold text-lg">Accurate Calculations</h4>
               <p className="mt-2 text-gray-600 text-sm">
-                Instantly monitor expenses, budgets, and investments.
+                Industry-standard formulas for SIP, EMI, FD, RD & Lump Sum.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-lg">MERN Stack Powered</h4>
               <p className="mt-2 text-gray-600 text-sm">
-                Built using modern technologies for performance and scalability.
+                Built using modern technologies for scalability and performance.
               </p>
             </div>
           </div>
@@ -135,7 +150,10 @@ const Landing = () => {
           Ready to Take Control of Your Finances?
         </h2>
 
-        <button className="mt-8 bg-white text-green-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition">
+        <button
+          onClick={() => navigate("/register")}
+          className="mt-8 bg-white text-green-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition"
+        >
           Create Free Account
         </button>
       </section>
@@ -154,7 +172,9 @@ const Landing = () => {
           </div>
 
           <div className="mt-6 md:mt-0">
-            <p className="text-sm">© 2026 Finance Tracker. All rights reserved.</p>
+            <p className="text-sm">
+              © 2026 Finance Tracker. All rights reserved.
+            </p>
           </div>
 
         </div>

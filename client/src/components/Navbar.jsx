@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
+import CalculatorsDropdown from "./CalculatorsDropdown";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await logout(); // clears backend cookie if implemented
+      await logout();
       navigate("/login");
     } catch (error) {
       console.error(error);
@@ -17,13 +18,16 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
       
-      {/* Logo */}
-      <Link to="/dashboard" className="text-xl font-bold text-blue-600">
+      {/* 🔥 Logo now links to homepage */}
+      <Link to="/" className="text-xl font-bold text-blue-600">
         FinanceTracker
       </Link>
 
       <div className="flex items-center gap-6">
-        
+
+        {/* 🔥 Separate Dropdown Component */}
+        <CalculatorsDropdown />
+
         {authUser ? (
           <>
             <Link

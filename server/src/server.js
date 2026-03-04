@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import expenseRoutes from "./routes/expense.routes.js";
 
 dotenv.config();
 connectDB();
@@ -12,8 +13,8 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/* ========= IMPORTANT ========= */
-app.use(express.json());        // 👈 THIS FIXES YOUR ERROR
+/* ========= MIDDLEWARE ========= */
+app.use(express.json());
 app.use(cookieParser());
 
 app.use(
@@ -23,7 +24,9 @@ app.use(
   })
 );
 
+/* ========= ROUTES ========= */
 app.use("/api/auth", authRoutes);
+app.use("/api/expenses", expenseRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
