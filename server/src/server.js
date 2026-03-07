@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import expenseRoutes from "./routes/expense.routes.js";
+import predictionRoutes from "./routes/prediction.routes.js";
+import insightRoutes from "./routes/insights.routes.js";
 
 dotenv.config();
 connectDB();
@@ -27,6 +29,8 @@ app.use(
 /* ========= ROUTES ========= */
 app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/predictions", predictionRoutes);
+app.use("/api/insights", insightRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
