@@ -16,16 +16,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full bg-white border-b border-gray-300 px-44 py-4 flex justify-between items-center z-50">
       
-      {/* 🔥 Logo now links to homepage */}
-      <Link to="/" className="text-xl font-bold text-blue-600">
-        FinanceTracker
-      </Link>
-
+      {/* Left Side: Logo + Navigation */}
       <div className="flex items-center gap-6">
+        {/* Logo */}
+        <Link to="/" className="text-xl font-bold text-blue-600">
+          Finsight
+        </Link>
 
-        {/* 🔥 Separate Dropdown Component */}
+        {/* Stocks & Crypto Links */}
+        <Link
+          to="/stocks"
+          className="text-gray-600 hover:text-blue-600"
+        >
+          Stocks
+        </Link>
+        <Link
+          to="/crypto"
+          className="text-gray-600 hover:text-blue-600"
+        >
+          Crypto
+        </Link>
+      </div>
+
+      {/* Right Side: Calculators & Auth */}
+      <div className="flex items-center gap-6">
+        {/* Calculators Dropdown */}
         <CalculatorsDropdown />
 
         {authUser ? (
@@ -54,12 +71,11 @@ const Navbar = () => {
         ) : (
           <Link
             to="/login"
-            className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+            className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700"
           >
-            Login
+            Login/SignUp
           </Link>
         )}
-
       </div>
     </nav>
   );
