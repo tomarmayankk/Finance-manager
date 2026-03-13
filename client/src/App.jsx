@@ -5,16 +5,33 @@ import useAuthStore from "./store/authStore";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboard/Dashboard";
 import AddExpense from "./pages/AddExpense";
-import Landing from "./pages/Landing";
+import Landing from "./pages/landing/Landing";
+import Profile from "./pages/Profile";
+import CalculatorPage from "./pages/CalculatorPage";
+import Crypto from "./pages/Crypto";
+import Stocks from "./pages/Stocks";
+import ShareMarket from "./pages/ShareMarket";
 
-// 🔥 Calculator Imports
-import SipCalculator from "./pages/calculators/SipCalculator";
-import EmiCalculator from "./pages/calculators/EmiCalculator";
-import FdCalculator from "./pages/calculators/FdCalculator";
-import RdCalculator from "./pages/calculators/RdCalculator";
-import LumpSumCalculator from "./pages/calculators/LumpSumCalculator";
+// 🔹 Protected Route Wrapper
+const ProtectedRoute = ({ children }) => {
+  const { authUser } = useAuthStore();
+  return authUser ? children : <Navigate to="/login" />;
+};
+
+// 🔹 Public Route Wrapper
+const PublicRoute = ({ children }) => {
+  const { authUser } = useAuthStore();
+  return !authUser ? children : <Navigate to="/dashboard" />;
+};
+
+// 🔹 Loader Component
+const Loader = () => (
+  <div className="flex justify-center items-center h-screen">
+    <p className="text-lg font-semibold">Checking Authentication...</p>
+  </div>
+);
 
 function App() {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
@@ -23,50 +40,26 @@ function App() {
     checkAuth();
   }, []);
 
-  if (isCheckingAuth) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg font-semibold">
-          Checking Authentication...
-        </p>
-      </div>
-    );
-  }
+  if (isCheckingAuth) return <Loader />;
 
   return (
     <>
       <Toaster />
 
       <Routes>
-        {/* ✅ Landing ALWAYS accessible */}
+        {/* Public Routes */}
         <Route path="/" element={<Landing />} />
-
-        {/* 🔥 PUBLIC CALCULATOR ROUTES */}
-        <Route path="/calculators/sip" element={<SipCalculator />} />
-        <Route path="/calculators/emi" element={<EmiCalculator />} />
-        <Route path="/calculators/fd" element={<FdCalculator />} />
-        <Route path="/calculators/rd" element={<RdCalculator />} />
-        <Route path="/calculators/lumpsum" element={<LumpSumCalculator />} />
-
-        {/* Auth Routes */}
-        <Route
-          path="/login"
-          element={!authUser ? <Login /> : <Navigate to="/dashboard" />}
-        />
-        <Route
-          path="/register"
-          element={!authUser ? <Register /> : <Navigate to="/dashboard" />}
-        />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+        <Route path="/crypto" element={<Crypto />} />
+        <Route path="/stocks" element={<Stocks />} />
+        <Route path="/share-market" element={<ShareMarket />} />
+        <Route path="/calculators/:type" element={<CalculatorPage />} />
 
         {/* Protected Routes */}
-        <Route
-          path="/dashboard"
-          element={authUser ? <Dashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/add-expense"
-          element={authUser ? <AddExpense /> : <Navigate to="/login" />}
-        />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/add-expense" element={<ProtectedRoute><AddExpense /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       </Routes>
     </>
   );

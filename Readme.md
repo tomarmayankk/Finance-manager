@@ -1,7 +1,6 @@
-# MERN Finance Tracker & Utilities Dashboard
-
+# Finsight
 ## Overview
-**MERN Finance Tracker & Utilities Dashboard** is a full-stack web application built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) that allows users to track expenses, manage personal finances, access dynamic calculators, and explore financial markets including **stocks** and **cryptocurrencies**. The application includes secure authentication, real-time data updates, and a responsive, user-friendly interface.
+**Finsight** is a full-stack web application built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js) that allows users to track expenses, manage personal finances, access dynamic calculators, and explore financial markets including **stocks** and **cryptocurrencies**. The application includes secure authentication, real-time data updates, and a responsive, user-friendly interface.
 
 ---
 

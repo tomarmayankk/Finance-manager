@@ -56,17 +56,10 @@ const Navbar = () => {
 
             <Link
               to="/profile"
-              className="text-gray-600 hover:text-blue-600"
+              className="text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded-md"
             >
-              Profile
+              {authUser.name.toUpperCase().split(" ")[0]}
             </Link>
-
-            <button
-              onClick={handleLogout}
-              className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
-            >
-              Logout
-            </button>
           </>
         ) : (
           <Link

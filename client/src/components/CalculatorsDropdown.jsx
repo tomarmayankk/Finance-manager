@@ -7,6 +7,11 @@ const calculators = [
   { name: "FD Calculator", path: "/calculators/fd" },
   { name: "RD Calculator", path: "/calculators/rd" },
   { name: "Lump Sum Calculator", path: "/calculators/lumpsum" },
+
+  // New Calculators
+  { name: "PPF Calculator", path: "/calculators/ppf" },
+  { name: "Inflation Calculator", path: "/calculators/inflation" },
+  { name: "Step-Up SIP Calculator", path: "/calculators/stepupsip" },
 ];
 
 const CalculatorsDropdown = () => {
