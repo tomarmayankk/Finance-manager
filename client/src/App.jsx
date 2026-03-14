@@ -36,9 +36,11 @@ const Loader = () => (
 function App() {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
 
-  useEffect(() => {
+useEffect(() => {
+  if (authUser) {
     checkAuth();
-  }, []);
+  }
+}, []);
 
   if (isCheckingAuth) return <Loader />;
 
