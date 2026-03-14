@@ -16,12 +16,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 /* ========= MIDDLEWARE ========= */
+app.use(cors({
+  origin: ["http://localhost:5173", "https://finance-manager-nine-xi.vercel.app"],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(cookieParser());
-
-app.use(cors({
-  origin: "https://finance-manager-nine-xi.vercel.app"
-}));
 
 /* ========= ROUTES ========= */
 app.use("/api/auth", authRoutes);
