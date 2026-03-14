@@ -15,6 +15,8 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set("trust proxy", 1);
+
 /* ========= MIDDLEWARE ========= */
 app.use(cors({
   origin: ["http://localhost:5173", "https://finance-manager-nine-xi.vercel.app"],
