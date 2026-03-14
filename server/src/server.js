@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173/",
     credentials: true,
   })
 );
@@ -31,6 +31,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/expenses", expenseRoutes);
 app.use("/api/predictions", predictionRoutes);
 app.use("/api/insights", insightRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Server is working");
+});
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
